@@ -4,24 +4,21 @@ import os
 import os
 from pathlib import Path
 url_c = 'https://www.cian.ru/cat.php?deal_type=sale&electronic_trading=2&engine_version=2&flat_share=2&offer_type=flat&only_flat=1&region=1&room1=1'  #here used to be site for scrab
-#!!!!!!!! DON"T FORGET TO DELETE SITE
 
 
 #____________________________execution_____________________________________________
 ps.create_dir() #создаём папку для хранения первых страниц с сылками
 headers = ps.get_user_agent() #меняем данные юзер-агент (@@@)
-#proxy_lst = ps.get_proxies() # парсим бесплатные прокси с открытого сайта, записываем их в файл lst_proxy.txt
-#checked_proxy = ps.check_proxy(proxy_lst) # читаем файл lst_proxy.txt, проверяем рабочие прокси, возвращаем рабочий прокси
-#(функция для выкладки проекта, во время использования выключаем, вместо proxy_lst подставляем рабочий прокси)
-checked_proxy = None
-#file_name = ps.get_page(headers, url_c, checked_proxy) # получаем страницу с сылками и сохраняем её (@@@)
+proxy_lst = ps.get_proxies() # парсим бесплатные прокси с открытого сайта, записываем их в файл lst_proxy.txt
+checked_proxy = ps.check_proxy(proxy_lst) # читаем файл lst_proxy.txt, проверяем рабочие прокси, возвращаем рабочий прокси
+file_name = ps.get_page(headers, url_c, checked_proxy) # получаем страницу с сылками и сохраняем её (@@@)
 file_name = 'C:\ZPy_training\Pars_Cian\data_scrb\d_page_(10.09,19,38).txt'
 links = ps.pars_links(file_name) #проходимся по сохранённой странице (файлу) с сылками и создаём кортеж из ссылок (@@@)
 objs = ps.data_pars(headers, links) #непосредственно парсим данные (@@@)
 ps.cleaner(objs) #очищаем некоторое значения от '\\xa0' и т.п., , записываем в json_файл (@@@)
 objs = ps.json_preparing() #подготовка js файлов к загрузке в БД
 
-# @@@ - для постоянного запуска
+
 
 
 #_____________________________________DB_block________________________________________
