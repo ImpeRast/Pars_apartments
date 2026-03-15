@@ -96,8 +96,8 @@ def get_page(headers, url, checked_proxy=None):
             checked_proxy = check_proxy(proxy_lst)
             response = requests.get(url=url, headers=headers, proxies=checked_proxy)
     texted_resp = response.text
-    output = open(f'data_scrb\d_page_{datetime.now().strftime("(%m.%d,%H,%M)")}.txt', 'w', encoding='UTF-8')
-    file_name = f'data_scrb\d_page_{datetime.now().strftime("(%m.%d,%H,%M)")}.txt'
+    output = open(f'data_scrb\\d_page_{datetime.now().strftime("(%m.%d,%H,%M)")}.txt', 'w', encoding='UTF-8')
+    file_name = f'data_scrb\\d_page_{datetime.now().strftime("(%m.%d,%H,%M)")}.txt'
     output.write(texted_resp)
     print('We get a file:')
     print(file_name)
